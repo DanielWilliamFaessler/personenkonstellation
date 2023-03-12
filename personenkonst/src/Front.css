@@ -1,0 +1,52 @@
+h1{
+    text-align: center;
+    padding-top: 3%;
+    font-size: 40px;
+    padding-bottom: 5%;
+}
+
+#beitreten {
+    margin-left: 80px;
+}
+#erstellen, #beitreten{
+    background-color: #afcfd5;
+    padding: 50px;
+    box-shadow: rgba(139, 206, 190, 0.65) 5px 5px, rgba(136, 236, 206, 0.72) 10px 10px, rgba(58, 192, 161, 0.75) 15px 15px, rgba(67, 145, 136, 0.62) 20px 20px, rgba(202, 243, 233, 0.05) -25px 25px;
+}
+
+label{
+    font-size: 20px;
+}
+
+h3{
+    font-size: 30px;
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 0.6em 2em;
+    border: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
