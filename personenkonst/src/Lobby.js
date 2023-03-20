@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './Lobby.css';
-import React, { useState, props, LoginForm } from 'react';
+import React from 'react';
 
 function LobbyRandomPin() {
     const numbers = [];
@@ -11,25 +11,25 @@ function LobbyRandomPin() {
     return <div className={"numbers"}>{numbers.join('')}</div>;
 }
 
-function Lobby() {
+function Lobby({show, author, book, code}) {
+    if (!show) return null;
 
     return (
-        <>
+        <div className={"lobby"}>
             <div className="container">
                 <div className="left-half">
                     <h1>Raum beitreten: </h1>
-                    <LobbyRandomPin />
+                    <LobbyRandomPin value={code} />
                     <h2>Personenkonstellation</h2>
-                    <p>Autor: ______________________</p>
-                    <p>Lektüre: ______________________</p>
-
-                </div>
-                <div className="right-half">
-                    <h3 className={"joiningUsers"}>Personen beigetreten: </h3>
-                    <a>show users which joined</a>
-                </div>
+                    <p>Autor: {author}</p>
+                    <p>Lektüre: {book}</p>
             </div>
-        </>
+            <div className="right-half">
+                <h3 className={"joiningUsers"}>Personen beigetreten: </h3>
+                <a>show users which joined</a>
+            </div>
+        </div>
+        </div>
     )
 }
 
