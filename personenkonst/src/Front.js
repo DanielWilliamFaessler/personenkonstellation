@@ -3,47 +3,55 @@ import './Front.css';
 import React, { useState, props, LoginForm } from 'react';
 import {Button, Container, Form} from "react-bootstrap";
 import Modal from "./Modal";
+import Lobby from "./Lobby";
+import LobbyRandomPin from "./Lobby";
 
 function Front() {
     const [showPopup, setShowPopup] = useState(false);
+    const [showLobby, setShowLobby] = useState(false);
+    const [autor, setAutor] = useState("");
+    const [lektuere, setLektuere] = useState("");
+    const [user, setUser] = useState("");
+    const [code, setCode] = useState("");
 
     return (
         <div id={"back"}>
-            <h1>Personenkonstellation</h1>
+            {/* <h1 className={'title'}>Personenkonstellation</h1> */}
             <div className={'container'}>
                 <div className={'box1'}>
                     <Form id={"erstellen"}>
                         <h3 >Raum erstellen:</h3>
                         <label>Lektüretitel eingeben: </label>
                         <br/>
-                        <input id="book" type={'text'}/>
+                        <input type={'text'} onChange={e => setLektuere(e.target.value)} />
                         <br/>
                         <br/>
                         <label>Autorenname eingeben: </label>
                         <br/>
-                        <input id="author" type={'text'}/>
+                        <input type={'text'}  onChange={e => setAutor(e.target.value)}/>
                         <br/>
                         <br/>
-                        <button>erstellen</button>
+                        <button  onClick={() => setShowLobby(true)}>erstellen</button>
                     </Form>
                 </div>
-                <div className={'box2'}>
+                <div className={'box1'}>
                     <Form  id={"beitreten"}>
                         <h3>Raum beitreten:</h3>
                         <label>Benutzername eingeben: </label>
                         <br/>
-                        <input id="username" type={'text'}/>
+                        <input type={'text'} onChange={e => setUser(e.target.value)}/>
                         <br/>
                         <br/>
                         <label>Raumcode eingeben: </label>
                         <br/>
-                        <input id="lobbycode" type={'text'}/>
+                        <input type={'text'}  onChange={e => setCode(e.target.value)}/>
                         <br/>
                         <br/>
                         <button onClick={() => setShowPopup(true)} >beitreten</button>
                     </Form>
                 </div>
-                <Modal show={showPopup} />
+                <Modal show={showPopup} room={code} user={user} />
+                <Lobby show={showLobby} book={lektuere} author={autor}/>
             </div>
         </div>
     );
