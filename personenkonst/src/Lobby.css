@@ -1,5 +1,6 @@
 h1{
     font-size: 40px;
+    text-align: center;
 }
 
 .joiningUsers{
@@ -36,7 +37,7 @@ a{
 
 .container{
     margin: 0%;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 
 }
@@ -53,6 +54,16 @@ a{
 p{
     font-size: 24px;
     text-align: center;
+}
+
+.lobby {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    margin-top: 0%;
 }
 
 
