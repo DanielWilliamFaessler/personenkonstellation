@@ -4,21 +4,21 @@
     position: fixed;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: white;
     margin-top: 0%;
 }
 
-
 .modal-content{
     background: lightsteelblue;
+    color: black;
     border-radius: 6%;
     width: 50%;
     height: fit-content;
     margin-bottom: 15%;
-
 }
 
-button{
+.close{
     margin-left: 75%;
     margin-bottom: 5%;
 }
