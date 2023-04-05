@@ -1,133 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import './Lobby.css';
 import React, { useState, useEffect } from 'react';
-import Joined from "./Joined";
-import Lobby from "./Lobby";
-import LobbyRandomPin from "./Lobby";
-import {Form} from "react-bootstrap";
-import useWebSocket from 'react-use-websocket';
+const WebSocket = require('ws');
 
-function App() {
-  const [showPopup, setShowPopup] = useState(false);
-  const [showLobby, setShowLobby] = useState(false);
-  const [autor, setAutor] = useState("");
-  const [lektüre, setLektüre] = useState("");
+function Lobby({pop,show, author, book, code,joiner,handleclose}) {
+    const [users,setUsers] = useState([]);
+    console.log(show);
+    if (!show) return null;
 
-  const [user, setUser] = useState("");
-  const [connected, setConnected] = useState(false);
-  const [pin, setPin] = useState("");
 
-  const [error, setError] = useState("");
+  /*  const socket = new WebSocket('ws://localhost:8080');
 
-  /*
-  //compare lobby pin and entered pin
-    const handleJoin = () => {
-        const ws = new WebSocket('ws://localhost:8000');
+    socket.addEventListener('open', (event) => {
+        // Handle connection opening
+    });
 
-        ws.onopen = () => {
-            console.log('Connected to server');
-            ws.send(`join:${pin}`);
-        };
+    socket.addEventListener('message', (event) => {
+        const data = JSON.parse(event.data);
 
-        ws.onmessage = (event) => {
-            console.log('Received message:', event.data);
-            setConnected(event.data);
-            ws.close();
-        };
+        if (data.type === 'user-joined') {
+            // Handle new user joining the lobby
+            const user = data.user;
+            users[user.id] = user;
+            updateUserList();
+        } else if (data.type === 'user-left') {
+            // Handle user leaving the lobby
+            const userId = data.userId;
+            delete users[userId];
+            updateUserList();
+        }
+    });
 
-        ws.onclose = () => {
-            console.log('Disconnected from server');
-        };
-    };
+    socket.addEventListener('close', (event) => {
+        console.log('Disconnected from server');
+        // Update UI to indicate that the connection has been closed
+    });
+
+    function updateUserList() {
+        const userList = document.querySelector('#user-list');
+        userList.innerHTML = '';
+
+        Object.values(users).forEach((user) => {
+            const li = document.createElement('li');
+            li.innerText = user.name;
+            userList.appendChild(li);
+        });
+    }
+
    */
 
 
-    const handleJoin = () => {
-      setShowPopup(true);
-    }
+// Generate random 6 digit pin for lobby
+    let lobbyPin = Math.floor(100000 + Math.random() * 900000).toString();
+    console.log('Lobby pin:', lobbyPin);
 
-  const handleClosepop = () => {
-    setShowPopup(false);
-    setShowLobby(false);
-  };
+    return (
+        <div className={"lobby"}>
+            <div className="container">
+                <div className="left-half">
+                    <h1>Raum beitreten: </h1>
+                    <fieldset className={'numbers'} >{lobbyPin}</fieldset>
+                    <h2>Personenkonstellation</h2>
+                    <p>Autor: {author}</p>
+                    <p>Lektüre: {book}</p>
 
-  const handleCloselob = () => {
-    setShowLobby(false);
-  };
-
-//create Lobby
-  const handleCreateLobby = () => {
-    setShowLobby(true);
-  };
-
-
-  //pin regex
-  const isValidPin = (code) => {
-    return /^\d{6}$/.test(code);
-  };
-
-
-
-
-  return (
-      <div id={"back"}>
-
-        {/*call components*/}
-        <section>
-          <h1 className={'title'}>Personenkonstellation</h1>
-        </section>
-        <Joined  show={showPopup} room={pin} user={user}  book={lektüre} author={autor} handleclose={handleClosepop} />
-        {/*} <Lobby show={showLobby} book={lektüre} author={autor}   joiner={user} handleclose={handleCloselob}/>*/}
-        <Lobby  show={showLobby} book={lektüre} author={autor}   joiner={user}  room={pin} handleclose={handleCloselob}/>
-
-        <div className={'container'}>
-          {/*create room field*/}
-          <div className={'box1'}>
-            <div id={"erstellen"}>
-              <h3 >Raum erstellen:</h3>
-              <label>Lektüretitel eingeben: </label>
-              <br/>
-              <input type={'text'} onChange={e => setLektüre(e.target.value)} />
-              <br/>
-              <br/>
-              <label>Autorenname eingeben: </label>
-              <br/>
-              <input type={'text'}  onChange={e => setAutor(e.target.value)}/>
-              <br/>
-              <br/>
-              <button   onClick={handleCreateLobby}>erstellen</button>
+                </div>
+                <div className="right-half" >
+                    <h3 className="joiningUsers" >  Personen beigetreten: </h3>
+                    <a>beigetretene Benutzer: </a>
+                    <ul>
+                        {joiner}
+                    </ul>
+                    <button className={"close"} onClick={handleclose} >x</button>
+                </div>
             </div>
-          </div>
-
-          {/*join room field*/}
-          <div className={'box1'}>
-            {connected ? (
-                <Lobby />
-            ) : (
-            <div  id={"beitreten"}>
-              <h3>Raum beitreten:</h3>
-              <label>Benutzername eingeben: </label>
-              <br/>
-              <input type={'text'} value={user} onChange={(e) => setUser(e.target.value)}/>
-              <br/>
-              <br/>
-              <label>Raumcode eingeben: </label>
-              <br/>
-              <input type={'text'} value={pin} onChange={(e) => setPin(e.target.value)} />
-              <br/>
-              <br/>
-              <button onClick={handleJoin}>beitreten</button>
-                {/*
-                {connected === 'success' && <p>Successfully joined lobby!</p>}
-                {connected === 'error' && <p>Invalid lobby pin.</p>}
-                */}
-
-            </div>
-                )}
         </div>
-        </div>
-        </div>
-  );
+    )
 }
 
-export default App;
+export default Lobby;
