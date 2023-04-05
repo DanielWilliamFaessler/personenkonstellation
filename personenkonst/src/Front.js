@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './Front.css';
 import React, { useState, useEffect } from 'react';
 import Joined from "./Joined";
 import Lobby from "./Lobby";
@@ -7,7 +7,7 @@ import LobbyRandomPin from "./Lobby";
 import {Form} from "react-bootstrap";
 import useWebSocket from 'react-use-websocket';
 
-function App() {
+function Front() {
   const [showPopup, setShowPopup] = useState(false);
   const [showLobby, setShowLobby] = useState(false);
   const [autor, setAutor] = useState("");
@@ -130,4 +130,4 @@ function App() {
   );
 }
 
-export default App;
+export default Front;
