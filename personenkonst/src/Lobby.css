@@ -17,6 +17,9 @@ h2{
     margin-top: 10%;
 }
 
+.start{
+    margin-left: 70%;
+}
 a{
     margin-left: 40px;
 }
@@ -26,6 +29,7 @@ a{
     width: 25%;
     height: 100vh;
     margin: 0%;
+    float: right;
 }
 
 
@@ -33,6 +37,7 @@ a{
     background-color: #ffffff;
     height: 100vh;
     width: 75%;
+    float: left;
 }
 
 .container{
@@ -42,13 +47,15 @@ a{
 
 }
 
-.numbers{
+fieldset{
     font-size: 50px;
     background-color: lightblue;
     display: flex;
+    text-align: center;
     justify-content: center;
     margin-left: 40%;
-    width: 20%;
+    margin-right: 40%;
+    width: 15%;
 }
 
 p{
@@ -59,12 +66,17 @@ p{
 .lobby {
     width: 100vw;
     height: 100vh;
-    position: fixed;
-    display: flex;
     justify-content: center;
     background-color: white;
     margin-top: 0%;
 }
+
+.tool {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 
 
 
