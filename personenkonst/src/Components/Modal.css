@@ -10,15 +10,22 @@
 }
 
 .modal-content{
-    background: lightsteelblue;
     color: black;
     border-radius: 6%;
-    width: 50%;
+    width: 40%;
     height: fit-content;
     margin-bottom: 15%;
+    background-color: lightsteelblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .close{
     margin-left: 75%;
     margin-bottom: 5%;
 }
+
+
+
+
